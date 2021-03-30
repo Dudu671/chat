@@ -1,0 +1,36 @@
+.messageContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #2e2e2e;
+    min-width: 5vw;
+    max-width: 80vw;
+    padding: 1px 10px;
+    border-radius: 10px;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, .9);
+    margin-left: 10px;
+}
+
+.messageContainer pre {
+    color: #cccccc;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    max-width: 80vw;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.messageContainer .userSpan {
+    color: #65cc4b;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.messageContainer .timeSpan {
+    color: #787878;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 10px;
+    align-self: flex-end;
+    margin-bottom: 2px;
+}

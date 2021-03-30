@@ -4,7 +4,7 @@ import { io } from 'socket.io-client'
 import './styles.css'
 import Message from '../../components/Message'
 
-const socket = io('http://192.168.0.189:3001')
+const socket = io(process.env.REACT_APP_SERVER_ADDRESS)
 
 export default function MainChat() {
     const [user, setUser] = useState(null)

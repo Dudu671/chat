@@ -47,10 +47,9 @@
     resize: none;
 }
 
-.textareaContainer button {
+.sendButton {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    padding: 15px;
     border-radius: 100%;
     right: 10px;
     cursor: pointer;
@@ -58,14 +57,13 @@
     outline: none;
     background-color: #65cc4b;
     color: white;
-    font-weight: bold;
 }
 
-.textareaContainer button:hover {
+.sendButton:hover {
     transform: scale(1.08);
     transition-duration: .3s;
 }
 
-.textareaContainer button:active {
+.sendButton:active {
     transform: scale(1);
 }

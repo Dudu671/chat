@@ -5,6 +5,7 @@
 }
 
 header {
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -76,24 +77,21 @@ nav ul li:hover {
     width: 100%;
     height: initial;
     transition: all 0.5s;
-    background-color:#292929;
+    background-color: #292929;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   }
   nav ul {
     display: block;
   }
-
-  nav ul li a{
+  nav ul li a {
     line-height: 50px;
   }
-
   nav ul li:hover {
     border-bottom: 0;
-    background-color:#383838;
+    background-color: #383838;
     border-left: 2px solid rgb(56, 192, 56);
-  }  
-
-  .menuRightAni{
+  }
+  .bringMenuToRight {
     left: 0;
   }
 }

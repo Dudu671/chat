@@ -12,6 +12,10 @@
     margin-left: 10px;
 }
 
+.messageContainer:first-child {
+    margin-top: 50px;
+}
+
 .messageContainer pre {
     color: #cccccc;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -21,7 +25,6 @@
 }
 
 .messageContainer .userSpan {
-    color: #65cc4b;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
     margin-top: 5px;

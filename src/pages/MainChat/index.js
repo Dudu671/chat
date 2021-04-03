@@ -4,6 +4,7 @@ import { MdSend } from 'react-icons/md'
 
 import './styles.css'
 import Message from '../../components/Message'
+import UserActionInfo from '../../components/UserActionInfo'
 
 const socket = io(process.env.REACT_APP_SERVER_ADDRESS)
 
@@ -12,6 +13,7 @@ export default function MainChat() {
     const [userColor, setUserColor] = useState({})
     const [messageToSend, setMessageToSend] = useState(null)
     const [messages, setMessages] = useState([])
+    const [userActionInfo, setUserActionInfo] = useState([])
 
     const getRandomRGBColor = () => {
         const red = Math.floor(Math.random() * 255)
@@ -31,7 +33,6 @@ export default function MainChat() {
     }
 
     const validateUsername = (username) => {
-        console.log(username)
         const userValidationRegEx = /[a-z 0-9]{2}/i
 
         if (username === null || username === undefined || !userValidationRegEx.test(username))
@@ -39,15 +40,6 @@ export default function MainChat() {
 
         return true
     }
-
-    useEffect(() => {
-        getUsername()
-    }, [])
-
-
-    socket.on('chat message', msg => {
-        setMessages([...messages, { user: msg[0], userColor: msg[1], text: msg[2], time: msg[3] }])
-    })
 
     const sendMessage = async () => {
         if (!validateUsername(user)) return getUsername()
@@ -59,6 +51,18 @@ export default function MainChat() {
         setMessageToSend(null)
         document.querySelector('textarea').value = ''
     }
+
+    useEffect(() => {
+        getUsername()
+    }, [])
+
+    socket.on('chat message', msg => {
+        setMessages([...messages, { user: msg[0], userColor: msg[1], text: msg[2], time: msg[3] }])
+    })
+
+    socket.on('user disconnected', userInfo => {
+        console.log(userInfo)
+    })
 
     return (
         <div className="mainChatContainer">

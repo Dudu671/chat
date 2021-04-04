@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import { io } from 'socket.io-client'
+import React, { useState, useEffect, useRef } from 'react'
 import { MdSend } from 'react-icons/md'
 
 import './styles.css'
 import Message from '../../components/Message'
-import UserActionInfo from '../../components/UserActionInfo'
 
-const socket = io(process.env.REACT_APP_SERVER_ADDRESS)
+const socket = new WebSocket(process.env.REACT_APP_SERVER_ADDRESS)
 
 export default function MainChat() {
     const [user, setUser] = useState(null)
     const [userColor, setUserColor] = useState({})
     const [messageToSend, setMessageToSend] = useState(null)
     const [messages, setMessages] = useState([])
-    const [userActionInfo, setUserActionInfo] = useState([])
 
     const getRandomRGBColor = () => {
         const red = Math.floor(Math.random() * 255)
@@ -47,28 +44,34 @@ export default function MainChat() {
 
         const date = new Date()
         const time = `${date.getHours() < 10 ? '0' + date.getHours() : date.getHours()}h${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`
-        socket.emit('chat message', [user, userColor, messageToSend, time])
+
+        socket.send(JSON.stringify([user, userColor, messageToSend, time]))
         setMessageToSend(null)
         document.querySelector('textarea').value = ''
+    }
+
+    const bottomRef = useRef()
+
+    const scrollToBottom = () => {
+        document.querySelector('.messages').scrollTop += 1000 * 1000
+    }
+
+    socket.onmessage = (message) => {
+        let msg = JSON.parse(message.data)
+        setMessages([...messages, { user: msg[0], userColor: msg[1], text: msg[2], time: msg[3] }])
+        scrollToBottom()
     }
 
     useEffect(() => {
         getUsername()
     }, [])
 
-    socket.on('chat message', msg => {
-        setMessages([...messages, { user: msg[0], userColor: msg[1], text: msg[2], time: msg[3] }])
-    })
-
-    socket.on('user disconnected', userInfo => {
-        console.log(userInfo)
-    })
-
     return (
         <div className="mainChatContainer">
             <div className="messages">
                 {messages.map(message => (
                     <Message
+                        key={Math.random()}
                         user={message.user}
                         userColor={message.userColor}
                         text={message.text}

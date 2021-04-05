@@ -7,6 +7,7 @@ import Message from '../../components/Message'
 const socket = new WebSocket(process.env.REACT_APP_SERVER_ADDRESS)
 
 export default function MainChat() {
+    const [userId, setUserId] = useState(null)
     const [user, setUser] = useState(null)
     const [userColor, setUserColor] = useState({})
     const [messageToSend, setMessageToSend] = useState(null)
@@ -38,6 +39,16 @@ export default function MainChat() {
         return true
     }
 
+    const generateUserId = () => {
+        let id = ''
+
+        for (let index = 0; index < 50; index++) {
+            id += Math.round(Math.random() * 10)
+        }
+
+        return id
+    }
+
     const sendMessage = async () => {
         if (!validateUsername(user)) return getUsername()
         if (messageToSend === null) return
@@ -45,26 +56,31 @@ export default function MainChat() {
         const date = new Date()
         const time = `${date.getHours() < 10 ? '0' + date.getHours() : date.getHours()}h${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`
 
-        socket.send(JSON.stringify([user, userColor, messageToSend, time]))
+        socket.send(JSON.stringify([userId, user, userColor, messageToSend, time]))
         setMessageToSend(null)
         document.querySelector('textarea').value = ''
     }
 
-    const bottomRef = useRef()
-
     const scrollToBottom = () => {
-        document.querySelector('.messages').scrollTop += 1000 * 1000
+        document.querySelector('.messages').scrollTop += 1000 * 1000 ^ 10
     }
 
     socket.onmessage = (message) => {
-        let msg = JSON.parse(message.data)
-        setMessages([...messages, { user: msg[0], userColor: msg[1], text: msg[2], time: msg[3] }])
+        const msg = JSON.parse(message.data)
+        console.log(msg)
+        setMessages([...messages, { userId: msg[0], user: msg[1], userColor: msg[2], text: msg[3], time: msg[4] }])
         scrollToBottom()
     }
 
     useEffect(() => {
+        setUserId(generateUserId())
         getUsername()
     }, [])
+
+    window.addEventListener("beforeunload", () => {
+        if (socket.readyState == WebSocket.OPEN) socket.close()
+        localStorage.clear()
+    })
 
     return (
         <div className="mainChatContainer">
@@ -72,6 +88,7 @@ export default function MainChat() {
                 {messages.map(message => (
                     <Message
                         key={Math.random()}
+                        my={message.userId === userId ? true : false}
                         user={message.user}
                         userColor={message.userColor}
                         text={message.text}

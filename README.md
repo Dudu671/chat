@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Simple Chat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an example of a simple chat application using WebSockets.
 
-## Available Scripts
+<img src="https://live.staticflickr.com/65535/51097792273_9f24767bd0_b.jpg"/>
 
-In the project directory, you can run:
+### Built With
 
-### `yarn start`
+- ReactJS
+- Node.js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" height="80"/>
+<img src="https://www.luiztools.com.br/wp-content/uploads/2017/03/nodejs-logo.png" height="80"/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br/>
 
-### `yarn test`
+<img src="https://img.shields.io/badge/License-MIT-blue"/>
+<img src="https://img.shields.io/badge/Pull%20Requests-Welcome-brightgreen"/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<hr/>
 
-### `yarn build`
+<!-- GETTING STARTED -->
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Install instructions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You need to have Node.js installed on your machine. If you don't have it, get it [here]('https://nodejs.org/en/').
 
-### `yarn eject`
+You will also need to have npm installed. With Node.js installed, you can run the following commando to get npm, if you don't already have it.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```sh
+npm install npm@latest -g
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Clone chat
+   ```sh
+   git clone https://github.com/Dudu671/chat.git
+   ```
+2. Clone chat-backend
+   ```sh
+   git clone https://github.com/Dudu671/chat-backend.git
+   ```
+3. Get in chat directory
+   ```
+   cd chat
+   ```
+4. Install NPM packages
+   ```sh
+   npm install
+   ```
+5. Get in chat-backend directory
+   ```
+   cd ../chat-backend
+   ```
+6. Install NPM packages
+   ```sh
+   npm install
+   ```
+7. Run chat-backend
+   ```
+   node server.js
+   ```
+8. Get your IPv4 address by running the following command on the CMD:
+   ```
+   ipconfig
+   ```
+9. Create a file called .env at the root of the chat (NOT chat-backend) directory with the following content:
+   ```
+   REACT_APP_SERVER_ADDRESS=ws://your-ipv4-address-here:1350
+   ```
+10. Run chat
+    ```
+    npm start
+    ```
+11. Open your browser and enter the following address in the URL field:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    ```
+    localhost:3000
+    ```
 
-## Learn More
+    <!-- USAGE EXAMPLES -->
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Contributing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-### Code Splitting
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<!-- LICENSE -->
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Distributed under the MIT License. See `LICENSE` for more information.
 
-### Making a Progressive Web App
+<!-- CONTACT -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Contact
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Eduardo R. de Matos - eduardoooax@gmail.com

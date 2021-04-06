@@ -25,7 +25,7 @@ This project is an example of a simple chat application using WebSockets.
 
 ### Prerequisites
 
-You need to have Node.js installed on your machine. If you don't have it, get it [here]('https://nodejs.org/en/').
+You need to have Node.js installed on your machine. If you don't have it, get it [here](https://nodejs.org/en/).
 
 You will also need to have npm installed. With Node.js installed, you can run the following commando to get npm, if you don't already have it.
 
